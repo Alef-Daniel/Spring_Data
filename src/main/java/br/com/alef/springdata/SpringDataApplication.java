@@ -9,16 +9,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.alef.springdata.modelo.Cargo;
 import br.com.alef.springdata.repositorio.CargoRepository;
 import br.com.alef.springdata.servico.CargoServico;
+import br.com.alef.springdata.servico.FuncionarioServico;
+import br.com.alef.springdata.servico.UnidadeServico;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
 
 	private final CargoServico cargoServico;
 	
+	private final FuncionarioServico funcionarioServico;
+
+	private final UnidadeServico unidadeServico;
+	
 	private boolean system = true;
 	
-	public SpringDataApplication(CargoServico cargoServico) {
+	public SpringDataApplication(CargoServico cargoServico, FuncionarioServico funcionarioServico,  UnidadeServico unidadeServico) {
 		this.cargoServico = cargoServico;
+		this.funcionarioServico = funcionarioServico;
+		this.unidadeServico= unidadeServico;
 	}
 	
 	
@@ -35,11 +43,23 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("Qual ação voce quer executar?");
 			System.out.println("0 - sair");
 			System.out.println("1 - Cargo");
+			System.out.println("2 - Funcionario");
+			System.out.println("3 - Unidade");
 			int action = scanner.nextInt();
-			if(action == 1) {
-				cargoServico.inicial(scanner);
-			}else {
-				system = false;
+			switch(action){
+				case 1: 
+					cargoServico.inicial(scanner);
+					break;
+				case 2: 
+					funcionarioServico.inicial(scanner);
+					break;
+				case 3: 
+					unidadeServico.inicial(scanner);
+					break;
+				default:
+					System.out.println("Finalizando");
+					system=false;
+					break;
 			}
 		}
 		
