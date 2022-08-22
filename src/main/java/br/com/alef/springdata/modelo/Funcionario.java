@@ -30,7 +30,7 @@ public class Funcionario {
 	private String cpf;
 	private BigDecimal salario;
 	@Column(name = "data_contratacao")
-	private LocalDate dataContratação;
+	private LocalDate dataContratacao;
 	@ManyToOne
 	@JoinColumn(name="cargo.id")
 	private Cargo cargo;
@@ -55,7 +55,7 @@ public class Funcionario {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.salario = salario;
-		this.dataContratação = dataContratação;
+		this.dataContratacao = dataContratação;
 		this.cargo = cargo;
 		this.unidades = unidades;
 	}
@@ -103,13 +103,13 @@ public class Funcionario {
 	}
 
 
-	public LocalDate getDataContratação() {
-		return dataContratação;
+	public LocalDate getDataContratacao() {
+		return dataContratacao;
 	}
 
 
-	public void setDataContratação(LocalDate dataContratação) {
-		this.dataContratação = dataContratação;
+	public void setDataContratacao(LocalDate dataContratação) {
+		this.dataContratacao = dataContratação;
 	}
 
 
@@ -131,6 +131,14 @@ public class Funcionario {
 	public void setUnidades(List<Unidade> unidades) {
 		this.unidades = unidades;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Funcionario [id=" + id + "| nome=" + nome + "| cpf=" + cpf + "| salario=" + salario
+				+ "| dataContratação=" + dataContratacao + "| cargo=" + cargo + "| unidades=" + unidades + "]";
+	}
+	
 	
 	
 	

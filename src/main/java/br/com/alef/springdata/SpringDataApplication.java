@@ -6,10 +6,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.alef.springdata.modelo.Cargo;
-import br.com.alef.springdata.repositorio.CargoRepository;
+
 import br.com.alef.springdata.servico.CargoServico;
 import br.com.alef.springdata.servico.FuncionarioServico;
+import br.com.alef.springdata.servico.RelatoriosServico;
 import br.com.alef.springdata.servico.UnidadeServico;
 
 @SpringBootApplication
@@ -20,13 +20,15 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final FuncionarioServico funcionarioServico;
 
 	private final UnidadeServico unidadeServico;
+	private final RelatoriosServico relatoriosServico;
 	
 	private boolean system = true;
 	
-	public SpringDataApplication(CargoServico cargoServico, FuncionarioServico funcionarioServico,  UnidadeServico unidadeServico) {
+	public SpringDataApplication(CargoServico cargoServico, FuncionarioServico funcionarioServico,  UnidadeServico unidadeServico,RelatoriosServico relatoriosServico) {
 		this.cargoServico = cargoServico;
 		this.funcionarioServico = funcionarioServico;
 		this.unidadeServico= unidadeServico;
+		this.relatoriosServico =relatoriosServico;
 	}
 	
 	
@@ -45,6 +47,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
+			System.out.println("4 - Relatorios");
 			int action = scanner.nextInt();
 			switch(action){
 				case 1: 
@@ -55,6 +58,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 3: 
 					unidadeServico.inicial(scanner);
+					break;
+				case 4: 
+					relatoriosServico.inicial(scanner);
 					break;
 				default:
 					System.out.println("Finalizando");
