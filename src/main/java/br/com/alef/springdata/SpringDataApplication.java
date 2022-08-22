@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.alef.springdata.servico.CargoServico;
 import br.com.alef.springdata.servico.FuncionarioServico;
+import br.com.alef.springdata.servico.RelatorioFuncionarioDinamico;
 import br.com.alef.springdata.servico.RelatoriosServico;
 import br.com.alef.springdata.servico.UnidadeServico;
 
@@ -21,14 +22,17 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	private final UnidadeServico unidadeServico;
 	private final RelatoriosServico relatoriosServico;
+	private final RelatorioFuncionarioDinamico relatorioFuncionarioDinamico;
 	
 	private boolean system = true;
 	
-	public SpringDataApplication(CargoServico cargoServico, FuncionarioServico funcionarioServico,  UnidadeServico unidadeServico,RelatoriosServico relatoriosServico) {
+	public SpringDataApplication(CargoServico cargoServico, FuncionarioServico funcionarioServico,  
+			UnidadeServico unidadeServico,RelatoriosServico relatoriosServico,RelatorioFuncionarioDinamico relatorioFuncionarioDinamico) {
 		this.cargoServico = cargoServico;
 		this.funcionarioServico = funcionarioServico;
 		this.unidadeServico= unidadeServico;
 		this.relatoriosServico =relatoriosServico;
+		this.relatorioFuncionarioDinamico = relatorioFuncionarioDinamico;
 	}
 	
 	
@@ -48,6 +52,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
 			System.out.println("4 - Relatorios");
+			System.out.println("5 - Relatorios dinâmico");
 			int action = scanner.nextInt();
 			switch(action){
 				case 1: 
@@ -61,6 +66,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 4: 
 					relatoriosServico.inicial(scanner);
+					break;
+				case 5: 
+					relatorioFuncionarioDinamico.inicial(scanner);
 					break;
 				default:
 					System.out.println("Finalizando");
